@@ -6,7 +6,7 @@
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-             <a class="mr-2">{{ post.author }}</a>
+            <a class="mr-2">{{ post.author }}</a>
             <small class="text-muted">{{ post.date | date:"Y-m-d, f" }}</small>
             <h2><a href="{% url 'post' post.pk %}">{{ post.title }}</a></h2>
             <p class="class-content">{{ post.content | truncatewords:"30" }}</p>
@@ -17,4 +17,21 @@
 </article>
 <hr>
 {% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; pirmas</a>
+            <a href="?page={{ page_obj.previous_page_number }}">atgal</a>
+        {% endif %}
+
+        <span class="current">
+            {{ page_obj.number }} iš {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">pirmyn</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">paskutinis &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}
