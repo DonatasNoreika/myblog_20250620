@@ -9,6 +9,9 @@ class Post(models.Model):
     title = models.CharField(verbose_name="Pavadinimas", max_length=20)
     content = models.TextField(verbose_name="Tekstas", max_length=3000)
 
+    class Meta:
+        ordering = ['-date']
+
 
 class Comment(models.Model):
     post = models.ForeignKey(to="Post", verbose_name="Post", on_delete=models.CASCADE)
