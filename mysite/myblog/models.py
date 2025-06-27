@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from tinymce.models import HTMLField
 
 
 # Create your models here.
@@ -7,7 +8,7 @@ class Post(models.Model):
     author = models.ForeignKey(to=User, verbose_name="Autorius", on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateTimeField(verbose_name="Data", auto_now_add=True)
     title = models.CharField(verbose_name="Pavadinimas", max_length=20)
-    content = models.TextField(verbose_name="Tekstas", max_length=3000)
+    content = HTMLField(verbose_name="Tekstas", max_length=3000)
 
     class Meta:
         ordering = ['-date']

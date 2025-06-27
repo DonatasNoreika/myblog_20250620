@@ -9,7 +9,7 @@
             <a class="mr-2">{{ post.author }}</a>
             <small class="text-muted">{{ post.date | date:"Y-m-d, f" }}</small>
             <h2><a href="{% url 'post' post.pk %}">{{ post.title }}</a></h2>
-            <p class="class-content">{{ post.content | truncatewords:"30" }}</p>
+            <p class="class-content">{{ post.content | truncatewords:"30" | safe }}</p>
             <p>Comments: {{ post.comments_count }}</p>
             <p><a href="{% url 'post' post.pk %}">Skaityti daugiau</a></p>
         </div>

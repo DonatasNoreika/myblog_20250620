@@ -8,7 +8,7 @@
              <a class="mr-2">{{ post.author }}</a>
             <small class="text-muted">{{ post.date | date:"Y-m-d, f" }}</small>
             <h2>{{ post.title }}</h2>
-            <p class="class-content">{{ post.content }}</p>
+            <p class="class-content">{{ post.content | safe }}</p>
             <p>Comments: {{ post.comments_count }}</p>
             {% for comment in post.comments.all %}
             <small class="text-muted">{{ comment.author }}, {{ comment.date | date:"Y-m-d, f" }}</small>
