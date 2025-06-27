@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Post
 from django.views import generic
 from django.db.models import Q
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class PostListView(generic.ListView):
@@ -10,6 +10,15 @@ class PostListView(generic.ListView):
     template_name = "posts.html"
     context_object_name = "posts"
     paginate_by = 5
+
+
+class UserPostListView(LoginRequiredMixin, generic.ListView):
+    model = Post
+    template_name = "user_posts.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        return Post.objects.filter(author=self.request.user)
 
 
 class PostDetailView(generic.DetailView):
