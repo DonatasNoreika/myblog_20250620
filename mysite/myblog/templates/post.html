@@ -10,9 +10,20 @@
             <h2>{{ post.title }}</h2>
             <p class="class-content">{{ post.content | safe }}</p>
             <p>Comments: {{ post.comments_count }}</p>
+            {% if user.is_authenticated %}
+            <div class="fieldWrapper">
+                <hr><br/>
+                <h1>Palikite komentarą</h1>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.content }}<br/>
+                    <input type="submit" value="Paskelbti">
+                </form>
+            </div>
+            {% endif %}
             {% for comment in post.comments.all %}
             <small class="text-muted">{{ comment.author }}, {{ comment.date | date:"Y-m-d, f" }}</small>
-            <p>{{ comment.content }}</p>
+            <p>{{ comment.content | safe }}</p>
             {% endfor %}
         </div>
     </div>
