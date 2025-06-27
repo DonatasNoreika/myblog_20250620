@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Comment
 from django.views import generic
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 class PostListView(generic.ListView):
@@ -19,6 +20,15 @@ class UserPostListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
+
+
+class UserCommentListView(LoginRequiredMixin, generic.ListView):
+    model = Comment
+    template_name = "user_comments.html"
+    context_object_name = "comments"
+
+    def get_queryset(self):
+        return Comment.objects.filter(author=self.request.user)
 
 
 class PostDetailView(generic.DetailView):
