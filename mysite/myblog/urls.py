@@ -19,7 +19,8 @@ from .views import (PostListView,
                     PostDetailView,
                     UserPostListView,
                     UserCommentListView,
-                    search)
+                    search,
+                    register)
 
 urlpatterns = [
     path("", PostListView.as_view(), name='posts'),
@@ -27,4 +28,5 @@ urlpatterns = [
     path("usercomments/", UserCommentListView.as_view(), name='user_comments'),
     path("posts/<int:pk>", PostDetailView.as_view(), name="post"),
     path('search/', search, name='search'),
+    path('register/', register, name='register'),
 ]

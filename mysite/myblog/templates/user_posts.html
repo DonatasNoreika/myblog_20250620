@@ -2,6 +2,7 @@
 
 {% block "title" %}Tavo įrašai{% endblock %}
 {% block "content" %}
+{% if posts %}
 {% for post in posts %}
 <article class="media content-section">
     <div class="media-body">
@@ -15,4 +16,7 @@
 </article>
 <hr>
 {% endfor %}
+{% else %}
+<p>Įrašų dar nėra</p>
+{% endif %}
 {% endblock %}

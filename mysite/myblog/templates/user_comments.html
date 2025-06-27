@@ -2,10 +2,14 @@
 
 {% block "title" %}Tavo komentarai{% endblock %}
 {% block "content" %}
+{% if comments %}
 {% for comment in comments %}
 <p><a href="{% url 'post' comment.post.pk %}">Įrašas: {{ comment.post.title }}</a></p>
 <small class="text-muted">{{ comment.author }}, {{ comment.date | date:"Y-m-d, f" }}</small>
 <p>{{ comment.content }}</p>
 <hr>
 {% endfor %}
+{% else %}
+<p>Komentarų dar nėra</p>
+{% endif %}
 {% endblock %}
