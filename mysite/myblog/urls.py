@@ -19,6 +19,7 @@ from .views import (PostListView,
                     PostDetailView,
                     UserPostListView,
                     UserCommentListView,
+                    PostCreateView,
                     search,
                     register,
                     profile)
@@ -31,4 +32,6 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('register/', register, name='register'),
     path('profile/', profile, name='profile'),
+    path("posts/create", PostCreateView.as_view(), name="post_create"),
+
 ]

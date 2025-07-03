@@ -135,3 +135,14 @@ def profile(request):
         "p_form": p_form,
     }
     return render(request, template_name='profile.html', context=context)
+
+
+class PostCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Post
+    template_name = "post_form.html"
+    fields = ['title', 'content']
+    success_url = "/"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

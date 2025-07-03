@@ -6,7 +6,7 @@
 {% for comment in comments %}
 <p><a href="{% url 'post' comment.post.pk %}">Įrašas: {{ comment.post.title }}</a></p>
 <small class="text-muted">{{ comment.author }}, {{ comment.date | date:"Y-m-d, f" }}</small>
-<p>{{ comment.content }}</p>
+<p>{{ comment.content | safe }}</p>
 <hr>
 {% endfor %}
 {% else %}
