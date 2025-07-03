@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 from .my_settings import SECRET_KEY, DEBUG, ALLOWED_HOSTS, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -165,3 +166,7 @@ TINYMCE_DEFAULT_CONFIG = {
     }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'myblog/media')
+
+MEDIA_URL = '/media/'
