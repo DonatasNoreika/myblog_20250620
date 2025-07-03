@@ -5,13 +5,14 @@
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-             <a class="mr-2">{{ post.author }}</a>
+            <img class="rounded-circle account-img" style="width: 30px" src="{{ post.author.profile.photo.url }}">
+            <a class="mr-2">{{ post.author }}</a>
             <small class="text-muted">{{ post.date | date:"Y-m-d, f" }}</small>
             <h2>{{ post.title }}</h2>
             <p class="class-content">{{ post.content | safe }}</p>
             <p>Comments: {{ post.comments_count }}</p>
             {% if user.is_authenticated %}
-            <div class="fieldWrapper">
+            <div class="fieldWrapper mb-2">
                 <hr><br/>
                 <h1>Palikite komentarą</h1>
                 <form action="" method="post">
@@ -22,6 +23,7 @@
             </div>
             {% endif %}
             {% for comment in post.comments.all %}
+            <img class="rounded-circle account-img" style="width: 30px" src="{{ comment.author.profile.photo.url }}">
             <small class="text-muted">{{ comment.author }}, {{ comment.date | date:"Y-m-d, f" }}</small>
             <p>{{ comment.content | safe }}</p>
             {% endfor %}
