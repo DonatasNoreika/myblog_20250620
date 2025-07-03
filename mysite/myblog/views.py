@@ -110,3 +110,7 @@ def register(request):
             messages.error(request, 'Slaptažodžiai nesutampa!')
             return redirect('register')
     return render(request, 'registration/register.html')
+
+
+def profile(request):
+    return render(request, template_name='profile.html')
