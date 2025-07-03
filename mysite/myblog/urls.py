@@ -20,6 +20,7 @@ from .views import (PostListView,
                     UserPostListView,
                     UserCommentListView,
                     PostCreateView,
+                    PostUpdateView,
                     search,
                     register,
                     profile)
@@ -33,5 +34,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('profile/', profile, name='profile'),
     path("posts/create", PostCreateView.as_view(), name="post_create"),
+    path("posts/<int:pk>/update", PostUpdateView.as_view(), name="post_update"),
 
 ]

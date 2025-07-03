@@ -11,6 +11,11 @@
             <h2>{{ post.title }}</h2>
             <p class="class-content">{{ post.content | safe }}</p>
             <p>Comments: {{ post.comments_count }}</p>
+            {% if post.author == user %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post_update' post.pk %}">Redaguoti</a>
+                </div>
+            {% endif %}
             {% if user.is_authenticated %}
             <div class="fieldWrapper mb-2">
                 <hr><br/>
