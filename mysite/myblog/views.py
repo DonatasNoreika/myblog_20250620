@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.contrib.auth import password_validation
 from django.views.generic.edit import FormMixin
-from .forms import CommentForm
+from .forms import CommentForm, UserUpdateForm
 
 # Create your views here.
 class PostListView(generic.ListView):
@@ -113,4 +113,20 @@ def register(request):
 
 
 def profile(request):
-    return render(request, template_name='profile.html')
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        new_email = request.POST['email']
+        if new_email and request.user.email != new_email and User.objects.filter(email=new_email).exists():
+            messages.error(request, f'Vartotojas su el. paštu {new_email} jau užregistruotas!')
+            return redirect('profile')
+        else:
+            if u_form.is_valid():
+                u_form.save()
+                messages.success(request, f"Profilis atnaujintas")
+                return redirect('profile')
+
+    u_form = UserUpdateForm(instance=request.user)
+    context = {
+        "u_form": u_form,
+    }
+    return render(request, template_name='profile.html', context=context)
