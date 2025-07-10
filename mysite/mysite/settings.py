@@ -170,3 +170,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'myblog/media')
 
 MEDIA_URL = '/media/'
+
+STATIC_ROOT = "/static/"
