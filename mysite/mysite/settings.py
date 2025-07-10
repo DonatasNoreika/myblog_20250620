@@ -172,4 +172,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'myblog/media')
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'myblog/static')]  # For development
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    # For collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')    # For collectstatic
